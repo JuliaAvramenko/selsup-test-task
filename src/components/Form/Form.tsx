@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import FormRow from '../FormRow/FormRow';
 import { getModel, getParamById } from '../../api/api';
-import { Model } from '../../mockData/types';
+import { Model, Props } from '../../mockData/types';
+import styles from './Form.module.css'
 
 
-function Form() {
-    const [modelState, setModelState] = useState<Model>()
+const Form: FC<Props> = ({ params, model }) => {
+    const [modelState, setModelState] = useState<Model>(model)
 
     useEffect(() => {
         const model: Model = getModel()
@@ -16,7 +17,7 @@ function Form() {
         setModelState({
             ...modelState,
             paramValues: [
-                ...modelState!.paramValues.filter(item => item.paramId != paramId),
+                ...modelState!.paramValues.filter(item => item.paramId !== paramId),
                 {
                     paramId: paramId,
                     value: newParamValue
@@ -26,13 +27,13 @@ function Form() {
     }
 
     return (
-        <form>
+        <form className={styles.form}>
             {modelState && modelState.paramValues.map((item) => {
                 return <FormRow
                     key={item.paramId}
                     paramId={item.paramId}
                     value={item.value}
-                    label={getParamById(item.paramId)}
+                    param={getParamById(item.paramId)}
                     callback={updateParamValueCallback}
                 />
             })}

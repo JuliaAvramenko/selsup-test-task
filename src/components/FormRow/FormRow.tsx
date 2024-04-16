@@ -1,17 +1,17 @@
-import React, { FC, useEffect, useState } from 'react';
-import Button from '../Button/Button';
+import React, { FC, useEffect, useState } from 'react'
 import styles from './FormRow.module.css'
-import { paramsData } from '../../mockData/data';
+import { Param } from '../../mockData/types'
+
 
 type TFormRowProps = {
     value: string
-    label: string | undefined
+    param: Param | undefined
     paramId: number
     callback: (paramId: number, newParamValue: string) => void
 }
 
 
-const FormRow: FC<TFormRowProps> = ({ value, label, paramId, callback }) => {
+const FormRow: FC<TFormRowProps> = ({ value, param, paramId, callback }) => {
     const [localValue, setLocalValue] = useState('')
 
     useEffect(() => {
@@ -23,9 +23,9 @@ const FormRow: FC<TFormRowProps> = ({ value, label, paramId, callback }) => {
         callback(paramId, e.target.value)
     }
     return (
-        <div>
-            <label className={styles.label}>{label}</label>
-            <input className={styles.input} name="name" value={localValue} onChange={onChangeHandler}></input>
+        <div className={styles.row}>
+            <label className={styles.label}>{param?.name}</label>
+            <input className={styles.input} name="name" type={param?.type} value={localValue} onChange={onChangeHandler}></input>
         </div>
 
 

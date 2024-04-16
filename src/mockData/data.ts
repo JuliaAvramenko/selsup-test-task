@@ -1,17 +1,21 @@
-export const paramsData = [
+import { Model, Param } from "./types";
+
+export const paramsData: Param[] = [
     {
         id: 1,
-        name: 'Назначение'
+        name: 'Назначение',
+        type: `text`
     },
     {
         id: 2,
-        name: 'Длина'
+        name: 'Длина',
+        type: `text`
     }
 ];
 
 
 
-export const modelData = {
+export const modelData: Model = {
     paramValues: [
         {
             paramId: 1,

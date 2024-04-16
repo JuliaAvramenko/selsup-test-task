@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import Form from './components/Form/Form';
+import { modelData } from './mockData/data';
 
 
 function App() {
 
   return (
     <div className="App">
-      <Form></Form>
+      <Form params={[]} model={modelData} />
     </div>
   );
 }

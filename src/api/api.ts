@@ -11,7 +11,7 @@ export function getParams() {
 export function getParamById(id: number) {
     const labels = paramsData.filter(item => item.id === id)
     if (labels.length === 1) {
-        return labels[0].name
+        return labels[0]
     }
 
     return undefined

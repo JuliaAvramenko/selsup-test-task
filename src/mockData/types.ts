@@ -1,7 +1,7 @@
 export interface Param {
     id: number
     name: string
-    type: string
+    type: `text`
 }
 
 export interface ParamValue {
